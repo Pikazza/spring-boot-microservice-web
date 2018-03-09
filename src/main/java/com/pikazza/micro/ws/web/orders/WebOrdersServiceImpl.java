@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -24,14 +27,6 @@ public class WebOrdersServiceImpl implements WebOrdersService {
 	
 	public List<Orders> getAllOrders() {
 		String url = serviceUrl+"/v1.0/orders";
-		//List<Orders> orders
-		//ResponseEntity<List<Orders>> responseEntity= restTemplate.getForEntity(url, List<Orders>.class);
-		//return Arrays.asList(responseEntity.getBody());
-		
-		/*System.out.println("Pikazza URL "+ url);
-		Orders[] orders = restTemplate.getForObject(url, Orders[].class);*/
-		//return Arrays.asList(orders);
-		
 		ResponseEntity<Orders[]> responseEntity = restTemplate.getForEntity(url, Orders[].class);
 		System.out.println("Pikazza Output "+ responseEntity.getBody());
 		return Arrays.asList(responseEntity.getBody());
@@ -43,6 +38,21 @@ public class WebOrdersServiceImpl implements WebOrdersService {
 		ResponseEntity<Orders> responseEntity = restTemplate.getForEntity(url, Orders.class);
 		System.out.println("Pikazza Output "+ responseEntity.getBody());
 		return responseEntity.getBody();
+	}
+
+	@Override
+	public Orders postOrder(Orders orders) {
+		String url = serviceUrl+"/v1.0/orders";
+		ResponseEntity<Orders> responseEntity = restTemplate.postForEntity(url,orders, Orders.class);
+		System.out.println("Pikazza Output "+ responseEntity.getBody());
+		return responseEntity.getBody();
+	}
+
+	@Override
+	public Orders putOrder(Orders orders) {
+		String url = serviceUrl+"/v1.0/orders"; 
+		restTemplate.put(url, orders);
+		return getOrder(orders.getOrderId());
 	}
 	
 	

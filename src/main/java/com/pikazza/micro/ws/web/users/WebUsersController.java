@@ -5,6 +5,8 @@ import java.util.logging.Logger;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -62,5 +64,29 @@ public class WebUsersController {
 		List<Orders> orders = webUsersService.getOrderByUserId(id);
 		logger.info("users-microservice byId() found: " + orders);
 		return orders;
+	}
+	
+	@POST
+	@Path("/users")
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_JSON})
+	//@RequestMapping("/users/{id}")
+	public Users postUser( Users user) {
+		logger.info("adding new user ");
+		Users users = webUsersService.postUser(user);
+		logger.info("adding new user completed ");
+		return users;
+	}
+	
+	@PUT
+	@Path("/users")
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_JSON})
+	//@RequestMapping("/users/{id}")
+	public Users putUser( Users user) {
+		logger.info("updating new user ");
+		Users users = webUsersService.putUser(user);
+		logger.info("updating new user completed ");
+		return users;
 	}
 }

@@ -8,14 +8,15 @@ import lombok.Setter;
 @Setter
 public class Orders {
 
-	long userId;
-	long itemId;
+	String orderId;
+	String userId;
+	String itemId;
 	String itemName;
 	String itemImage;
 	String itemQty;
 	String itemPrice;
 	
-	public Orders(long userId, long itemId, String itemName, String itemImage, String itemQty, String itemPrice) {
+	public Orders(String userId, String itemId, String itemName, String itemImage, String itemQty, String itemPrice) {
 		super();
 		this.userId = userId;
 		this.itemId = itemId;

@@ -8,4 +8,8 @@ public interface WebOrdersService {
 
 	Orders getOrder(String id);
 
+	Orders postOrder(Orders orders);
+
+	Orders putOrder(Orders orders);
+
 }

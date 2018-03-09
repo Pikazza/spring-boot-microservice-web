@@ -51,6 +51,21 @@ public class WebUsersServiceImpl implements WebUsersService{
 		System.out.println("Pikazza Output "+ responseEntity.getBody());
 		return Arrays.asList(responseEntity.getBody());
 	}
+
+	@Override
+	public Users postUser(Users user) {
+		String url = serviceUrl+"/v1.0/users";
+		ResponseEntity<Users> responseEntity = restTemplate.postForEntity(url, user, Users.class);
+		System.out.println("Pikazza Output "+ responseEntity.getBody());
+		return responseEntity.getBody();
+	}
+
+	@Override
+	public Users putUser(Users user) {
+		String url = serviceUrl+"/v1.0/users"; 
+		restTemplate.put(url, user);
+		return getUser(user.getUserId());
+	}
 	
 	
 }

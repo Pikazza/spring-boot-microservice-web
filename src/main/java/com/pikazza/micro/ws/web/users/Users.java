@@ -8,13 +8,13 @@ import lombok.Setter;
 @Setter
 public class Users {
 
-	long userId;
+	String userId;
 	String firstName;
 	String lastName;
 	String email;
 	String mobileNo;
 	
-	public Users(long userId, String firstName, String lastName, String email, String mobileNo) {
+	public Users(String userId, String firstName, String lastName, String email, String mobileNo) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
